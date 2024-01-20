@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* @layer base{} :for customize any tag */
+@layer base {
+  h1 {
+    @apply text-6xl;
+  }
+  h2 {
+    @apply text-5xl;
+  }
+  h3 {
+    @apply text-4xl;
+  }
+  h1 {
+    @apply text-3xl;
+  }
+  h2 {
+    @apply text-2xl;
+  }
+  h3 {
+    @apply text-xl;
+  }
+}
+
+/* @layer components{} :for customize any components like button */
+@layer components {
+  .btn {
+    @apply px-3;
+    @apply py-2;
+    @apply rounded-md;
+  }
+  .btn-primary {
+    @apply bg-purple-400;
+  }
+  .btn-danger {
+    @apply bg-red-400;
+  }
+}
