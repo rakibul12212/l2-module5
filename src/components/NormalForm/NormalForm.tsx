@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import cn from "../../utils/cn";
+import Button from "../ui/Button";
 
 const NormalForm = () => {
   const { register, handleSubmit } = useForm();
@@ -12,19 +13,19 @@ const NormalForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={cn("border-2 border-red-500 w-full p-5 mx-auto", {
-        "max-w-5xl": double,
-        "max-w-md": !double,
-      })}
+      className={cn(
+        "border-2 border-gray-300 rounded-lg shadow-sm w-full p-5 my-5 mx-auto",
+        {
+          "max-w-5xl": double,
+          "max-w-md": !double,
+        }
+      )}
     >
       <div
-        className={cn(
-          "border-2 border-blue-500 grid grid-cols-1 gap-5 justify-items-center",
-          {
-            "md:grid-cols-2": double,
-            "md:grid-cols-": !double,
-          }
-        )}
+        className={cn(" grid grid-cols-1 gap-5 justify-items-center", {
+          "md:grid-cols-2": double,
+          "md:grid-cols-": !double,
+        })}
       >
         <div className="w-full max-w-md">
           <label className="block" htmlFor="name">
@@ -54,14 +55,40 @@ const NormalForm = () => {
             {...register("name")}
           />{" "}
         </div>
+        <div className="w-full max-w-md">
+          <label className="block" htmlFor="name">
+            Gender
+          </label>
+          <select>
+            <option>male</option>
+            <option>female</option>
+            <option>other</option>
+          </select>
+        </div>
+        <div className="w-full max-w-md">
+          <label className="block" htmlFor="name">
+            About
+          </label>
+          <textarea></textarea>
+        </div>
+        <div className="w-full max-w-md">
+          <label className="block" htmlFor="name">
+            agreement & terms
+          </label>
+          <input type="checkbox" />
+        </div>
       </div>
-      {/* <select>
-          <option>one</option>
-          <option>two</option>
-          <option>three</option>
-          <option>four</option>
-        </select> */}
-      {/* <button type="submit">Submit</button> */}
+      <div
+        className={cn(" grid grid-cols-1 gap-5 justify-items-center", {
+          "md:grid-cols-2 ": double,
+        })}
+      >
+        <div className=" w-full max-w-md col=start-1 md:col-start-2 flex justify-end my-5">
+          <Button className="w-full md:w-fit" type="submit">
+            Submit
+          </Button>
+        </div>
+      </div>
     </form>
   );
 };
