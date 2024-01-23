@@ -1,22 +1,24 @@
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import cn from "../../utils/cn";
 import Button from "../ui/Button";
-import { z } from "zod";
-
-const signUpSchema = z.object({
-  name: z.string(),
-  email: z.string().email(),
-  password: z.string().min(8, "too short"),
-});
+import { zodResolver } from "@hookform/resolvers/zod";
+import { TNormalForm, signUpSchema } from "./validation";
 
 const NormalForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<TNormalForm>({
+    // defaultValues: {
+    //   name: "full name",
+    //   email: "example@email.com",
+    //   password: "********",
+    // },
+    resolver: zodResolver(signUpSchema),
+  });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: FieldValues) => {
     console.log(data);
   };
   const double = true;
@@ -45,10 +47,10 @@ const NormalForm = () => {
             type="text"
             id="name"
             placeholder="Full Name"
-            {...register("name", { required: true })}
+            {...register("name")}
           />
           {errors.name && (
-            <span className="text-xs text-red-500">This field is requred.</span>
+            <span className="text-xs text-red-500">{errors.name.message}</span>
           )}
         </div>
         <div className="w-full max-w-md">
@@ -61,7 +63,10 @@ const NormalForm = () => {
             id="email"
             placeholder="example@email.com"
             {...register("email")}
-          />{" "}
+          />
+          {errors.email && (
+            <span className="text-xs text-red-500">{errors.email.message}</span>
+          )}
         </div>
         <div className="w-full max-w-md">
           <label className="block" htmlFor="password">
@@ -75,7 +80,9 @@ const NormalForm = () => {
             {...register("password", { minLength: 8 })}
           />
           {errors.password && (
-            <span className="text-xs text-red-500">Too short</span>
+            <span className="text-xs text-red-500">
+              {errors.password.message}
+            </span>
           )}
         </div>
         {/* <div className="w-full max-w-md">
