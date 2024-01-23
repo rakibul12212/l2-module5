@@ -3,6 +3,7 @@ import Button from "./components/ui/Button";
 import Container from "./components/ui/Container";
 import Modal from "./components/ui/Modal";
 import NormalForm from "./components/NormalForm/NormalForm";
+import { Form, FormSection, FormSubmit } from "./components/ReusableForm";
 
 function App() {
   //for modal
@@ -34,7 +35,11 @@ function App() {
 
     //for form
     <Container>
-      <NormalForm></NormalForm>
+      {/* <NormalForm></NormalForm> */}
+      <Form>
+        <FormSection></FormSection>
+        <FormSubmit></FormSubmit>
+      </Form>
     </Container>
   );
 }
