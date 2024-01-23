@@ -1,10 +1,13 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import cn from "../../utils/cn";
 import Button from "../ui/Button";
 
 const NormalForm = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);
@@ -31,31 +34,44 @@ const NormalForm = () => {
           <label className="block" htmlFor="name">
             Name
           </label>
-          <input type="text" id="name" {...register("name")} />{" "}
+          <input
+            type="text"
+            id="name"
+            placeholder="Full Name"
+            {...register("name", { required: true })}
+          />
+          {errors.name && (
+            <span className="text-xs text-red-500">This field is requred.</span>
+          )}
         </div>
         <div className="w-full max-w-md">
-          <label className="block" htmlFor="name">
+          <label className="block" htmlFor="email">
             Email
           </label>
           <input
             className="w-full"
-            type="text"
-            id="name"
-            {...register("name")}
+            type="email"
+            id="email"
+            placeholder="example@email.com"
+            {...register("email")}
           />{" "}
         </div>
         <div className="w-full max-w-md">
-          <label className="block" htmlFor="name">
+          <label className="block" htmlFor="password">
             Password
           </label>
           <input
             className="w-full"
-            type="text"
-            id="name"
-            {...register("name")}
-          />{" "}
+            type="password"
+            id="password"
+            placeholder="********"
+            {...register("password", { minLength: 8 })}
+          />
+          {errors.password && (
+            <span className="text-xs text-red-500">Too short</span>
+          )}
         </div>
-        <div className="w-full max-w-md">
+        {/* <div className="w-full max-w-md">
           <label className="block" htmlFor="name">
             Gender
           </label>
@@ -69,14 +85,14 @@ const NormalForm = () => {
           <label className="block" htmlFor="name">
             About
           </label>
-          <textarea></textarea>
+          <textarea placeholder="text"></textarea>
         </div>
         <div className="w-full max-w-md">
           <label className="block" htmlFor="name">
             agreement & terms
           </label>
           <input type="checkbox" />
-        </div>
+        </div> */}
       </div>
       <div
         className={cn(" grid grid-cols-1 gap-5 justify-items-center", {
