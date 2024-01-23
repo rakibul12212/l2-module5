@@ -1,6 +1,13 @@
 import { useForm } from "react-hook-form";
 import cn from "../../utils/cn";
 import Button from "../ui/Button";
+import { z } from "zod";
+
+const signUpSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  password: z.string().min(8, "too short"),
+});
 
 const NormalForm = () => {
   const {
