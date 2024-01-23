@@ -41,19 +41,13 @@ const NormalForm = () => {
         <div
           className={cn(" grid grid-cols-1 gap-5 justify-items-center", {
             "md:grid-cols-2": double,
-            "md:grid-cols-": !double,
           })}
         >
           <div className="w-full max-w-md">
             <label className="block" htmlFor="name">
               Name
             </label>
-            <input
-              type="text"
-              id="name"
-              placeholder="Full Name"
-              {...register("name")}
-            />
+            <input type="text" id="name" {...register("name")} />
             {errors.name && (
               <span className="text-xs text-red-500">
                 {errors.name.message}
@@ -68,7 +62,6 @@ const NormalForm = () => {
               className="w-full"
               type="email"
               id="email"
-              placeholder="example@email.com"
               {...register("email")}
             />
             {errors.email && (
@@ -85,7 +78,6 @@ const NormalForm = () => {
               className="w-full"
               type="password"
               id="password"
-              placeholder="********"
               {...register("password", { minLength: 8 })}
             />
             {errors.password && (
